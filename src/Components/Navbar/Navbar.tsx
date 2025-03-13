@@ -26,6 +26,10 @@ function Navbar() {
       },
    ];
    const { totalQty } = useCarBaContext();
+   const logOutHand = ()=>{
+      console.log("logOut Clicked");
+      
+   }
 
    return (
       <nav className="flex justify-between py-5 px-2 shadow-md shadow-yellow-600">
@@ -46,6 +50,9 @@ function Navbar() {
             <Link href={"/shopBasket"} className="text-xl text-yellow-400">
                <div>سبد خرید</div>
             </Link>
+            <button className="px-1 py-2 bg-orange-700 text-white" onClick={logOutHand}>
+               خروج
+            </button>
          </div>
       </nav>
    );
