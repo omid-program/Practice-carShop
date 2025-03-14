@@ -4,10 +4,11 @@ import Link from "next/link";
 import React from "react";
 import SearchNav from "../SearchNav/SearchNav";
 import { usePathname } from "next/navigation";
+import cookie from 'js-cookie'
 
 function Navbar() {
-      const pathName = usePathname()
-   
+   const pathName = usePathname();
+
    const navLinks = [
       {
          id: 1,
@@ -26,17 +27,23 @@ function Navbar() {
       },
    ];
    const { totalQty } = useCarBaContext();
-   const logOutHand = ()=>{
-      console.log("logOut Clicked");
-      
-   }
+   const logOutHand = () => {
+      cookie.remove('token')
+   };
 
    return (
       <nav className="flex justify-between py-5 px-2 shadow-md shadow-yellow-600">
          <div className="nav-right ">
             <ul className="flex">
                {navLinks.map((item) => (
-                  <li key={item.id} className={`${pathName === String(item.id) ? 'p-2  shadow-sm shadow-sky-600' : 'p-2'}`}>
+                  <li
+                     key={item.id}
+                     className={`${
+                        pathName === String(item.id)
+                           ? "p-2  shadow-sm shadow-sky-600"
+                           : "p-2"
+                     }`}
+                  >
                      <Link href={item.link} className="text-xl text-yellow-400">
                         {item.title}
                      </Link>
@@ -44,13 +51,18 @@ function Navbar() {
                ))}
             </ul>
          </div>
-         <SearchNav/>
+         <SearchNav />
          <div className="nav-left flex gap-1">
-            <span className="bg-orange-800 size-8 rounded-full flex justify-center items-center ">{totalQty}</span>
+            <span className="bg-orange-800 size-8 rounded-full flex justify-center items-center ">
+               {totalQty}
+            </span>
             <Link href={"/shopBasket"} className="text-xl text-yellow-400">
                <div>سبد خرید</div>
             </Link>
-            <button className="px-1 py-2 bg-orange-700 text-white" onClick={logOutHand}>
+            <button
+               className="px-1 py-2 bg-orange-700 text-white"
+               onClick={logOutHand}
+            >
                خروج
             </button>
          </div>
