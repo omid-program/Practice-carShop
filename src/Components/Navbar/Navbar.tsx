@@ -8,6 +8,7 @@ import cookie from 'js-cookie'
 
 function Navbar() {
    const pathName = usePathname();
+   
 
    const navLinks = [
       {
@@ -60,7 +61,7 @@ function Navbar() {
                <div>سبد خرید</div>
             </Link>
             <button
-               className="px-1 py-2 bg-orange-700 text-white"
+               className="px-1 py-2 bg-orange-700 text-white rounded-lg mx-1"
                onClick={logOutHand}
             >
                خروج
